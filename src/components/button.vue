@@ -1,16 +1,22 @@
 <template>
-    <button type="button" class="btn">{{ buttonText }} &#8594;</button>
+    <!-- tp 02 -->
+    <button type="button" class="btn" @click="clickHandler">{{ buttonText }} &#8594;</button> 
 </template>
 <script>
 export default {
-    // name: " button",
-    props:{
+    name: " Button",
+    props: {
         buttonText: {
-                type: String,
-                Required: true,
-            },
+            type: String,
+            Required: true,
+        },
+        // tp02
+        clickHandler: {
+            type: Function,
+            required: true,
+        },
     },
-    
+
 }
 </script>
 <style scoped>
@@ -25,7 +31,8 @@ export default {
     border: none;
     margin-left: 10%;
 }
-.btn:hover{
-        background-color: #FDC040;
-    }
+
+.btn:hover {
+    background-color: #FDC040;
+}
 </style>

@@ -2,7 +2,8 @@
     <div class="c0" :style="{ backgroundColor: bgColor2 }">
         <img :src="imgBg" alt="">
         <h2>{{ caption }}</h2>
-        <Button :buttonText="'Show Now'"/>
+        <!-- tp02 -->
+        <Button :buttonText="'ShopNow'" :clickHandler="shopHere" />
     </div>
 </template>
 <script>
@@ -14,8 +15,14 @@ export default {
         caption: String,
         bgColor2: String
     },
-    components:{
-        Button
+    components: {
+        Button,
+    },
+    // tp02
+    methods: {
+        shopHere() {
+            alert("No Need to wait: " + this.caption);
+        }
     }
 
 }
