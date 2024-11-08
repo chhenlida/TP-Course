@@ -1,7 +1,7 @@
 <template>
-    <div class="c0" :style="{ backgroundColor: bgColor2 }">
-        <img :src="imgBg" alt="">
-        <h2>{{ caption }}</h2>
+    <div class="c0" :style="{ backgroundColor: color }">
+        <img :src="image" alt="">
+        <h2>{{ title }}</h2>
         <!-- tp02 -->
         <Button :buttonText="'ShopNow'" :clickHandler="shopHere" />
     </div>
@@ -11,9 +11,9 @@ import Button from './button.vue';
 export default {
     name: "Promotion",
     props: {
-        imgBg: String,
-        caption: String,
-        bgColor2: String
+        title: String,
+        color: String,
+        image: String
     },
     components: {
         Button,
