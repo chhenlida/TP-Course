@@ -6,6 +6,7 @@
         </div>
         <div class="b0-text">
             <h4>{{ name }}</h4>
+            <!-- Tp02 -->
             <p>{{ productCount }} items</p>
 
         </div>
@@ -14,6 +15,7 @@
 <script>
 export default {
     name: "Category",
+    //tp02
     props: {
         id: String,
         name: String,

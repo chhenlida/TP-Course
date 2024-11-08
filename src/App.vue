@@ -24,10 +24,12 @@ export default {
     },
     data() {
         return {
+            // tp02
             category: [],
             promotion: []
         };
     },
+    // tp02
     mounted() {
         axios.get('http://localhost:3000/api/categories')
             .then(response => {

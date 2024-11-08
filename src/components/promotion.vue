@@ -1,5 +1,6 @@
 <template>
     <div class="c0" :style="{ backgroundColor: color }">
+        <!-- tp02 -->
         <img :src="image" alt="">
         <h2>{{ title }}</h2>
         <!-- tp02 -->
@@ -10,6 +11,7 @@
 import Button from './button.vue';
 export default {
     name: "Promotion",
+    //tp02
     props: {
         title: String,
         color: String,
