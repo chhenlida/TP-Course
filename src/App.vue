@@ -15,6 +15,7 @@
 import Category from './components/category.vue';
 import Promotion from './components/promotion.vue';
 import axios from 'axios';
+import { useProductStore } from './stores/product_store';
 
 export default {
     name: 'App',
@@ -26,30 +27,20 @@ export default {
         return {
             // tp02
             category: [],
-            promotion: []
+            promotion: [],
+            store: useProductStore()
         };
-    },
-    // tp02
-    mounted() {
-        axios.get('http://localhost:3000/api/categories')
-            .then(response => {
-                this.category = response.data;
-            })
-            .catch(error => {
-                console.error("Error fetching categories:", error.response ? error.response.data : error.message);
-            });
         
-        axios.get('http://localhost:3000/api/promotions')
-            .then(response => {
-                this.promotion = response.data;
-            })
-            .catch(error => {
-                console.error("Error fetching promotions:", error.response ? error.response.data : error.message);
-            });
+        
+    },
+    mounted() {
+        store.fetchPromotion();
+        store.fetchCategory();
+
     }
 
-
 };
+
 
 
 
