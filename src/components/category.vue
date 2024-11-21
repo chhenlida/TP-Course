@@ -13,6 +13,8 @@
     </div>
 </template>
 <script>
+
+
 export default {
     name: "Category",
     //tp02
@@ -22,7 +24,7 @@ export default {
         image: String,
         productCount: String,
         color: String
-    },
+    }
 }
 </script>
 <style scoped>

@@ -9,6 +9,7 @@
 </template>
 <script>
 import Button from './button.vue';
+
 export default {
     name: "Promotion",
     //tp02
