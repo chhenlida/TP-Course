@@ -1,6 +1,6 @@
 <template>
   <div class="product-list">
-    <div v-for="product in products" :key="product.name" class="product-item">
+    <div class="product-item">
       <!-- Product Image -->
       <img :src="product.image" :alt="product.name" class="product-image" @error="handleImageError($event)" />
 
@@ -54,6 +54,9 @@ import { useProductStore } from "@/stores/product_store";
 
 export default {
   name: "ProductList",
+  props: [
+    "product"
+  ],
   computed: {
     ...mapState(useProductStore, {
       products: "products",
