@@ -1,9 +1,11 @@
 <template>
   <div class="product-list">
-    <div class="product-item">
+    <div class="product-item" @click="goToProductDetail">
       <!-- Product Image -->
-      <img :src="product.image" :alt="product.name" class="product-image" @error="handleImageError($event)" />
-
+      <img
+      :src="'http://localhost:3000/' + JSON.parse(product.image)[0]"
+    />
+      
       <!-- Product Details -->
       <div class="product-details">
         <h3>{{ product.name }}</h3>
@@ -35,9 +37,7 @@
           </button>
 
           <div v-if="product.addedToCart" class="quantity-selector">
-            <button type="button" @click="decrement(product)" class="quantity-btn">-</button>
             <input type="number" v-model.number="product.quantity" :min="1" :max="product.max" class="quantity-input" />
-            <button type="button" @click="increment(product)" class="quantity-btn">+</button>
             <!-- <button @click="addToCart(product)" class="add-btn">Add +</button> -->
           </div>
         </div>
@@ -70,27 +70,22 @@ export default {
     toggleAddToCart(product) {
       product.addedToCart = true;
     },
-
-    // Increase quantity
-    increment(product) {
-      if (product.quantity < product.max) {
-        product.quantity++;
+    goToProductDetail() {
+      if (this.product.id) {
+        this.$router.push({ name: 'productview', params: { id: this.product.id } });
+      } else {
+        console.error('Product ID is missing');
       }
     },
-
-    // Decrease quantity
-    decrement(product) {
-      if (product.quantity > 1) {
-        product.quantity--;
+    getFirstImage(images) {
+      if (images) {
+        const imageArray = images.split(',').map(images => images.trim());
+        return 'http://localhost:3000/' + imageArray[0];
       }
+      return "default-image.jpg"; // Fallback if no images
     },
+    // Other methods
 
-    // // Add product to cart
-    // addToCart(product) {
-    //   console.log(`Added ${product.name} with quantity ${product.quantity} to cart`);
-    //   // Implement logic for adding to the cart
-    //   product.addedToCart = false; // Hide the quantity selector after adding
-    // },
   },
 };
 </script>

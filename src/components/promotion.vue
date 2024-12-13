@@ -1,7 +1,7 @@
 <template>
     <div class="c0" :style="{ backgroundColor: color }">
         <!-- tp02 -->
-        <img :src="image" alt="">
+        <img :src="'http://localhost:3000/'+image" alt="">
         <h2>{{ title }}</h2>
         <!-- tp02 -->
         <Button :buttonText="'ShopNow'" :clickHandler="shopHere" />
