@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="navbar">
-            <img src="/image/Logo.png" alt="Logo">
+            <img src="/image/Logo.png" alt="Logo" class="logo">
             <SearchBox class="searchbar" />
             <div class="setting">
                 <div class="content">
@@ -35,7 +35,6 @@
                     <option value="bakery">Bakery</option>
                 </select>
             </div>
-            <!-- Category Dropdown -->
 
             <ul class="nav-links">
                 <li>
@@ -43,39 +42,13 @@
                         <img src="/image/icons/flame.png" alt="Hot Deals Icon">Hot Deals
                     </router-link>
                 </li>
-                <li>
-                    <router-link to="/">Home</router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'food' } }">
-                        Food
-                    </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'vegetables' } }">
-                        Vegetables
-                    </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'drink' } }">
-                        Drink
-                    </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'cookies' } }">
-                        Cookies
-                    </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'meat-seafood' } }">
-                        Meat & Seafood
-                    </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'categoryview', params: { id: 'bakery' } }">
-                        Bakery
-                    </router-link>
-                </li>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'food' } }">Food</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'vegetables' } }">Vegetables</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'drink' } }">Drink</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'cookies' } }">Cookies</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'meat-seafood' } }">Meat & Seafood</router-link></li>
+                <li><router-link :to="{ name: 'categoryview', params: { id: 'bakery' } }">Bakery</router-link></li>
             </ul>
         </nav>
         <hr>
@@ -90,139 +63,134 @@ export default {
     components: { SearchBox },
     data() {
         return {
-            categorySelected: "", // Selected category from dropdown
+            categorySelected: "",
         };
     },
     methods: {
-    goToCategory() {
-        if (this.categorySelected) {
-            console.log(`Navigating to category: ${this.categorySelected}`); // Debugging log
-            this.$router.push({ name: "categoryview", params: { id: this.categorySelected } });
-        } else {
-            console.error("No category selected");
-        }
+        goToCategory() {
+            if (this.categorySelected) {
+                console.log(`Navigating to category: ${this.categorySelected}`);
+                this.$router.push({ name: "categoryview", params: { id: this.categorySelected } });
+            } else {
+                console.error("No category selected");
+            }
+        },
     },
-},
-
 };
 </script>
 
 <style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+}
+
 p {
-    font-size: 18px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #444;
 }
+
 hr {
-    border-top: 2px solid rgb(177, 177, 177);
-    margin-top: 5px;
-}
-.contain {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-    font-size: 18px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
 }
 
 .navbar {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
     justify-content: space-between;
-    gap: 40px;
-    font-size: 18px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar img {
-    width: 10%;
-    display: flex;
-    justify-content: start;
+.logo {
+    width: 150px;
 }
 
 .searchbar {
-    position: relative;
-    margin-left: 10px;
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 500px;
+}
+
+.searchbar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
 }
 
 .setting {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
+    gap: 20px;
+}
+
+.setting .content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
 }
 
 .setting img {
-    width: 100%;
-    height: 50%;
+    width: 25px;
+    height: 25px;
 }
 
-.content {
+.contain {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
     justify-content: center;
+    padding: 10px 0;
+    background-color: #fff;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
+    gap: 15px;
 }
 
 .nav-links li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    list-style: none;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-size: large;
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    white-space: nowrap;
+    color: #555;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
-    background: rgb(63, 201, 148);
-    border-radius: 10px;
-}
-
-.nav-links img {
-    width: 20%;
-    height: 20%;
-    margin-right: 10px;
+    background-color: #28a745;
+    color: #fff;
 }
 
 .category-dropdown {
-    padding: 10px;
-    margin: 20px;
-    font-size: 1rem;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.category-dropdown select {
+    background: transparent;
+    border: none;
+    color: #fff;
     outline: none;
     cursor: pointer;
-    background: rgb(28, 206, 144);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.category-dropdown:hover {
-    background: rgb(57, 190, 139);
-}
-
-.category-dropdown img {
-    width: 60%;
-    height: 60%;
 }
 </style>
